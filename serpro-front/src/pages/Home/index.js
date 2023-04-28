@@ -1,22 +1,35 @@
-//import { useEffect, useState } from "react";
 import { Header } from "../../components/Header";
 import { BannerHome } from "../../components/BannerHome";
-//import { PopularCollections } from "../../components/PopularCollections";
-//import { NewReleases } from "../../components/NewReleases";
-
-//import api from "../../services/api";
 
 export function Home() {
+
+  /*
+  let isLogin = true //FIXME 
 
   return (
     <>
       <body className="body-home">
         <div className="p-12">
           <Header />
-          <BannerHome />
-          <div className="h-80"></div>
+          {
+          isLogin ? <Login /> : <BannerHome/>
+          }
+          <div className="h-screen"></div>
         </div>
       </body>
+    </>
+  )
+  */
+
+  return (
+    <>
+      <div className="body-home">
+        <div className="p-12">
+          <Header />
+          <BannerHome/>
+          <div className="h-screen"></div>
+        </div>
+      </div>
     </>
   )
 }
