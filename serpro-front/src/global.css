@@ -30,10 +30,10 @@
 
 @layer components {
   .body-home {
-    @apply font-gilroy-medium bg-hero-pattern text-white bg-no-repeat bg-cover bg-zinc-900 overflow-x-hidden;
+    @apply  bg-hero-pattern text-white bg-no-repeat bg-cover bg-zinc-900 overflow-x-hidden;
   }
 
   .body-movie {
-    @apply font-gilroy-medium text-white bg-no-repeat bg-cover overflow-x-hidden h-screen;
+    @apply text-white bg-no-repeat bg-cover overflow-x-hidden h-screen;
   }
 }
