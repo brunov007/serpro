@@ -1,4 +1,3 @@
-import avatarWoman from '../assets/avatar-woman.svg'
 import { Link } from "react-router-dom";
 
 export function Header() {
@@ -13,12 +12,7 @@ export function Header() {
 
       <Link to="/login">
         <div className="md:flex gap-5">
-          <span className="mt-3">Login</span>
-          <img
-            className="h-8 w-8  md:w-12 md:h-12 cursor-pointer"
-            src={avatarWoman}
-            alt='foto do usuario'
-          />
+          <span>Login</span>
         </div>
       </Link>
     </header>
