@@ -1,0 +1,39 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.body-center {
+  background: linear-gradient(90deg, #9A35EF 0.97%, #4B00C4 46.41%, #4176D6 101.25%);
+}
+
+.body-init {
+  background: linear-gradient(260.39deg, #00315F -3.36%, #40137A 51.91%, #7A1363 94.34%);
+}
+
+.align-image {
+  margin: 0 auto;
+}
+
+.blur-image {
+  backdrop-filter: blur(20px)
+}
+
+.gradient-btn {
+  background: linear-gradient(132.02deg, rgba(255, 255, 255, 0.2) -2.16%, rgba(0, 0, 0, 0.052) 151.47%);
+  backdrop-filter: blur(10px);
+}
+
+.black-overlay {
+  background: rgba(0, 0, 0, 0.50);
+}
+
+
+@layer components {
+  .body-home {
+    @apply font-gilroy-medium bg-hero-pattern text-white bg-no-repeat bg-cover bg-zinc-900 overflow-x-hidden;
+  }
+
+  .body-movie {
+    @apply font-gilroy-medium text-white bg-no-repeat bg-cover overflow-x-hidden h-screen;
+  }
+}
