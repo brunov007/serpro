@@ -10,8 +10,8 @@ export function Main() {
       <div className="body-main">
         <div className="p-12">
           <HeaderMain />
-          <div className="flex flex-row gap-4 mt-10">
-            <div className="flex flex-col h-fit w-auto p-10 gap-8 items-center bg-[#00000041] rounded-lg">
+          <div className="flex flex-row gap-4 mt-10 blur-image-main">
+            <div className="flex flex-col h-100 w-auto p-10 gap-8 items-center bg-[#00000041] rounded-lg">
               
               <button className="custom-button-main flex flex-col p-2 items-center">
                <MaterialIcon icon="dashboard" size={50} color="#000010"/>

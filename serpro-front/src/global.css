@@ -18,6 +18,10 @@
   backdrop-filter: blur(20px)
 }
 
+.blur-image-main {
+  backdrop-filter: blur(8px)
+}
+
 .gradient-btn {
   background: linear-gradient(132.02deg, rgba(255, 255, 255, 0.2) -2.16%, rgba(0, 0, 0, 0.052) 151.47%);
   backdrop-filter: blur(10px);

@@ -58,7 +58,7 @@ export function Campos(){
                     placeholder="Dado"/>
             </fieldset>
             <div className="flex flex-col gap-4 items-center">
-                <button onClick={addEmailField} className="bg-white rounded-full w-fit h-fit">
+                <button onClick={addEmailField} className="bg-white rounded-full w-fit h-10">
                     <MaterialIcon icon="add" size={40}/>
                 </button>
                 <FormAction className="btn-submit w-80" handleSubmit={handleSubmit} text="Enviar"/>
