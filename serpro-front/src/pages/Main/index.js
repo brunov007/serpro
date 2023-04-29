@@ -13,20 +13,20 @@ export function Main() {
           <div class="flex flex-row gap-4 mt-10">
             <div class="flex flex-col h-fit w-auto p-10 gap-8 items-center bg-[#00000041] rounded-lg">
               
-              <div className="flex flex-col p-3 items-center rounded-lg bg-indigo-100">
+              <button className="custom-button-main flex flex-col p-2 items-center">
                <MaterialIcon icon="dashboard" size={50}/>
                <h4>Campos</h4>
-              </div>
+              </button>
 
-              <div className="flex flex-col p-3 items-center rounded-lg bg-indigo-100">
+              <button className="custom-button-main flex flex-col p-2 items-center">
                <MaterialIcon icon="dataset" size={50}/>
                <h4>Excel</h4>
-              </div>
+              </button>
 
-              <div className="flex flex-col p-3 items-center rounded-lg bg-indigo-100">
+              <button className="custom-button-main flex flex-col p-2 items-center">
                <MaterialIcon icon="view_kanban" size={50}/>
                <h4>Tabela</h4>
-              </div>
+              </button>
             </div>
             
             <div class="flex-auto w-80 bg-[#00000041] rounded-lg h-screen">
