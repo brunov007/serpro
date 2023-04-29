@@ -2,10 +2,22 @@ import { Link, useNavigate } from "react-router-dom";
 import { Header } from "../../components/Header";
 import {FormExtra} from "../../components/FormExtra"
 import {FormAction} from "../../components/FormAction"
+import { useState } from "react";
 
 export function Login(){
 
+    const [data, setData] = useState({
+        email:"",
+        password:""
+    })
+
     const navigate = useNavigate();
+
+    const handle = e => {
+        const newData = {...data}
+        newData[e.target.id] = e.target.value
+        setData(newData)
+    }
 
     const handleSubmit = e =>{
         e.preventDefault()
@@ -50,32 +62,26 @@ export function Login(){
                 <form className="mt-8 space-y-6 flex justify-center flex-col" onSubmit={handleSubmit}>
                     <div className="-space-y-px">
                         <div className="my-5">
-                            <label htmlFor="email-address" className="sr-only">
-                                Email address
-                            </label>
                             <input
-                                    labelText="Email address"
-                                    labelFor="email-address"
-                                    id="email-address"
-                                    name="email"
+                                    labeltext="Email address"
+                                    id="email"
+                                    value={data.email}
                                     type="email"
                                     placeholder="Email address" 
-                                    className="w-full border-solid border-2 border-gray-100"
+                                    className="w-full border-solid border-2 border-gray-100 text-black"
+                                    onChange={handle}
                             />
                         </div>
                         <div className="my-5">
-                            <label htmlFor="password" className="sr-only">
-                                Password
-                            </label>
                             <input
-                                    labelText="Password"
-                                    labelFor="password"
+                                    labeltext="Password"
                                     id="password"
-                                    name="password"
+                                    value={data.password}
                                     type="password"
                                     placeholder="Password"
                                     autoComplete="current-password"
-                                    className="w-full border-solid border-2 border-gray-100"
+                                    className="w-full border-solid border-2 border-gray-100 text-black"
+                                    onChange={handle}
                             />
                         </div>
                     </div>
