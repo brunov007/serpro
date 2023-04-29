@@ -10,7 +10,7 @@ export function HeaderMain() {
       <div>
         <div className="md:flex gap-5">
         <div className="md:flex mt-2 text-white">
-          <span>User n11223j3k2n1</span>
+          <span>user-n11223j3k2n1</span>
         </div>
           <img
             className="h-8 w-8  md:w-12 md:h-12 cursor-pointer"
