@@ -54,7 +54,7 @@
   }
 
   .custom-button-main {
-    @apply transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:bg-white bg-indigo-100 rounded-lg;
+    @apply transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:bg-white rounded-lg;
   }
 
   .input-field{

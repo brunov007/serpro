@@ -37,12 +37,12 @@ export function Login(){
         <div className="body-home">
           <div className="p-12">
             <Header />
-            <div className="rounded-lg bg-white flex-col items-center justify-center py-12 px-4 sm:px-6 lg:px-8 mt-20 mr-52 ml-52">
+            <div className="rounded-lg bg-white flex-col items-center justify-center py-12 px-4 sm:px-6 lg:px-8 mt-20 w-full">
                 <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
                     Login to your account
                 </h2>
                 <p className="mt-2 text-center text-sm text-gray-600 mt-5">
-                    Don't have an account yet?
+                    Don't have an account yet? 
                     <Link to="/signup" className="font-medium text-purple-600 hover:text-purple-500">
                         Signup
                     </Link>
@@ -60,6 +60,7 @@ export function Login(){
                                     name="email"
                                     type="email"
                                     placeholder="Email address" 
+                                    className="w-full border-solid border-2 border-gray-100"
                             />
                         </div>
                         <div className="my-5">
@@ -74,6 +75,7 @@ export function Login(){
                                     type="password"
                                     placeholder="Password"
                                     autoComplete="current-password"
+                                    className="w-full border-solid border-2 border-gray-100"
                             />
                         </div>
                     </div>
