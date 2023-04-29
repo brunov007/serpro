@@ -27,17 +27,41 @@
   background: rgba(0, 0, 0, 0.50);
 }
 
+.inputs-set {
+  border: none;
+}
+
+.input-field{
+  border: none;
+  padding: 8px;
+  margin-right: 4px;
+  margin-bottom: 4px;
+  display: block;
+}
+
+.btn-submit{
+  padding: 8px 12px;
+  background-color: white;
+}
 
 @layer components {
   .body-home {
-    @apply  bg-hero-pattern text-white bg-no-repeat bg-cover bg-zinc-900 overflow-x-hidden;
+    @apply h-screen bg-hero-pattern text-white bg-no-repeat bg-cover bg-zinc-900 overflow-x-hidden;
   }
 
   .body-main {
-    @apply  bg-hero-pattern text-black bg-no-repeat bg-cover bg-zinc-900 overflow-x-hidden;
+    @apply h-screen  bg-hero-pattern text-black bg-no-repeat bg-cover bg-zinc-900 overflow-x-hidden;
   }
 
   .custom-button-main {
     @apply transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:bg-white bg-indigo-100 rounded-lg;
+  }
+
+  .input-field{
+    @apply rounded-full
+  }
+
+  .btn-submit{
+    @apply transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 rounded-full
   }
 }
