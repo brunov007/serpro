@@ -34,7 +34,7 @@ export function Login(){
 
     return (
       <>
-        <div className="body-home h-screen">
+        <div className="body-home">
           <div className="p-12">
             <Header />
             <div className="rounded-lg bg-white flex-col items-center justify-center py-12 px-4 sm:px-6 lg:px-8 mt-20 mr-52 ml-52">

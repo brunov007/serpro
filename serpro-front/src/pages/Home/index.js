@@ -27,7 +27,6 @@ export function Home() {
         <div className="p-12">
           <Header />
           <BannerHome/>
-          <div className="h-screen"></div>
         </div>
       </div>
     </>

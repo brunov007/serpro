@@ -7,7 +7,7 @@ export function Main() {
 
   return (
     <>
-      <div className="body-main h-screen">
+      <div className="body-main">
         <div className="p-12">
           <HeaderMain />
           <div class="flex flex-row gap-4 mt-10">
@@ -29,7 +29,7 @@ export function Main() {
               </button>
             </div>
             
-            <div class="flex-auto w-80 bg-[#00000041] rounded-lg h-screen">
+            <div class="flex-auto w-80 bg-[#00000041] rounded-lg h-full p-10">
               {
                 // Tela pra cada funcionalidade selecionada
               }
