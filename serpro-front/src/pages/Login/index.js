@@ -78,7 +78,7 @@ export function Login(){
                         </div>
                     </div>
                     <FormExtra/>
-                    <FormAction handleSubmit={handleSubmit} text="Login"/>
+                    <FormAction className="btn-login" handleSubmit={handleSubmit} text="Login"/>
                 </form>
             </div>
           </div>
