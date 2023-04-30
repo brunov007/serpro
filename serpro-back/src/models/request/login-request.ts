@@ -1,11 +1,11 @@
-import { IsNotEmpty, IsString, IsEmail, Length,} from 'class-validator';
+import { IsNotEmpty, IsString, IsEmail, Length} from 'class-validator';
 
 export class LoginRequest {
 
-    @IsString()
-    @IsNotEmpty({
-        message: "Email inválido."
-    })
+    // @IsString()
+    // @IsNotEmpty({
+    //     message: "Email inválido."
+    // })
     // @IsEmail({}, {
     //     message: "Email inválido."
     // })
@@ -15,7 +15,7 @@ export class LoginRequest {
     readonly email: string
   
     
-    @IsString()
+    // @IsString()
     // @IsNotEmpty({
     //     message: "Senha inválida."
     // })
