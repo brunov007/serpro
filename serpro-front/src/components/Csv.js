@@ -35,12 +35,8 @@ export function Csv(){
                 throw new Error(`Erro no Servidor! status:${response.status}`);
             }
 
-            if(response.data.status){
-                setShow(true)
-                setText(response.data.text)
-            }else{
-                alert(response.data.message)
-            }
+            setShow(true)
+            setText(response.data.text)
 
         })
         .catch(error => {
