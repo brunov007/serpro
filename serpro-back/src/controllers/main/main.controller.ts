@@ -27,18 +27,10 @@ export class MainController {
     async uploadFile(@UploadedFile() file: Express.Multer.File): Promise<ChatResponse> {
         if(!file) return {status: false, message: "Necessário adicionar um arquivo de fomato .csv"}
         if(file.mimetype !== 'text/csv') return {status: false, message: "Formato inválido."}
+        
         const dados = this.dataClean(file.buffer.toString())
-        /*
-        dados
-        [
-            'usuario',   'marca',
-            'case',      'salario',
-            'dentro',    'gmail',
-            'interaçao', 'junho',
-            'arroba'
-        ]
-        */
-        return {text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", status: true}
+        
+        return await this.openAIService.chatCompletion(dados)
     }
 
     private dataClean(s: string){
