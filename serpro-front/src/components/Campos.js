@@ -2,10 +2,13 @@ import MaterialIcon from 'material-icons-react';
 import { useState } from 'react';
 import {FormAction} from "../components/FormAction"
 import axios from 'axios';
+import { Modal } from './Modal';
 
 export function Campos(){
 
     const [isLoading, setIsLoading] = useState(false)
+    const [show, setShow] = useState(false)
+    const [text, setText] = useState("")
 
     const handleSubmit = e => {
         e.preventDefault()
@@ -37,7 +40,12 @@ export function Campos(){
                 throw new Error(`Erro no Servidor! status:${response.status}`);
             }
 
-            alert(response.data.status)
+            if(response.data.status){
+                setShow(true)
+                setText(response.data.text)
+            }else{
+                alert(response.data.message)
+            }
         })
         .catch(error => {
             setIsLoading(false)
@@ -62,20 +70,27 @@ export function Campos(){
         list.appendChild(newEmailField);
     }
 
+    const hideModal = () => setShow(false)
+
     return (
-        <form className="flex flex-col space-y-60" onSubmit={handleSubmit}>
-            <fieldset className="inputs-set" id="list-container">
-                <input 
-                    className="input-field" 
-                    required 
-                    placeholder="Dado"/>
-            </fieldset>
-            <div className="flex flex-col gap-4 items-center">
-                <button onClick={addEmailField} className="bg-white rounded-full w-fit h-10">
-                    <MaterialIcon icon="add" size={40}/>
-                </button>
-                <FormAction className="btn-submit w-80" handleSubmit={handleSubmit} text="Enviar"/>
-            </div>
-        </form>
+        <>
+            <Modal show={show} handleClose={hideModal}>
+                <p>{text}</p>
+            </Modal>
+            <form className="flex flex-col space-y-60" onSubmit={handleSubmit}>
+                <fieldset className="inputs-set" id="list-container">
+                    <input 
+                        className="input-field" 
+                        required 
+                        placeholder="Dado"/>
+                </fieldset>
+                <div className="flex flex-col gap-4 items-center">
+                    <button onClick={addEmailField} className="bg-white rounded-full w-fit h-10">
+                        <MaterialIcon icon="add" size={40}/>
+                    </button>
+                    <FormAction className="btn-submit w-80" handleSubmit={handleSubmit} text="Enviar"/>
+                </div>
+            </form>
+        </>
     );
 }

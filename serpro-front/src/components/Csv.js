@@ -1,10 +1,13 @@
 import { useState } from 'react';
 import {FormAction} from "../components/FormAction"
 import axios from 'axios';
+import { Modal } from './Modal';
 
 export function Csv(){
     const [selectedFile, setSelectedFile] = useState(null);
     const [isLoading, setIsLoading] = useState(false)
+    const [show, setShow] = useState(false)
+    const [text, setText] = useState("")
 
     const handleSubmit = async(event) => {
         setIsLoading(true)
@@ -32,7 +35,13 @@ export function Csv(){
                 throw new Error(`Erro no Servidor! status:${response.status}`);
             }
 
-            alert(response.data.status)
+            if(response.data.status){
+                setShow(true)
+                setText(response.data.text)
+            }else{
+                alert(response.data.message)
+            }
+
         })
         .catch(error => {
             setIsLoading(false)
@@ -46,10 +55,15 @@ export function Csv(){
 
     const handleFileSelect = (event) => setSelectedFile(event.target.files[0])
 
+    const hideModal = () => setShow(false)
+
     return (
         <>
+            <Modal show={show} handleClose={hideModal}>
+                <p>{text}</p>
+            </Modal>
             <form className="flex flex-col space-y-80 items-center" onSubmit={handleSubmit}>
-                <input type="file" onChange={handleFileSelect}/>
+                <input type="file" onChange={handleFileSelect} className="text-white"/>
                 <FormAction className="btn-submit w-80" handleSubmit={handleSubmit} text="Upload File"/>
             </form>
         </>
