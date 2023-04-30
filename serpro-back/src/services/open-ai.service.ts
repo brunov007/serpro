@@ -28,6 +28,11 @@ export class OpenAiService {
     }
     */
 
+
+    /*
+        FIXME: arr deve conter palavras em ingles. 
+        Utilizar modelo da OpenAI para traduzir de portugues para ingles
+    */
     async chatCompletion(arr: string[]){
         let text = ""
         const s = `Describe whether these data: ${arr.join(",")} are related to the LGPD`
