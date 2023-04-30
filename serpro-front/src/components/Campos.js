@@ -1,7 +1,11 @@
 import MaterialIcon from 'material-icons-react';
+import { useState } from 'react';
 import {FormAction} from "../components/FormAction"
+import axios from 'axios';
 
 export function Campos(){
+
+    const [isLoading, setIsLoading] = useState(false)
 
     const handleSubmit = e => {
         e.preventDefault()
@@ -9,6 +13,8 @@ export function Campos(){
     }
 
     const send = () => {
+        setIsLoading(true)
+
         const list = []
         const container = document.getElementById('list-container');
         const inputs = container.getElementsByTagName('input');
@@ -16,24 +22,31 @@ export function Campos(){
             list.push(inputs[i].value)
         }
 
-        /*
-        const endpoint=`https://api.com`;
-         fetch(endpoint,
-             {
-             method:'POST',
-             headers: {
-             'Content-Type': 'application/json'
-             },
-             body:{
-                 dados: list
-             }
-             }).then(response=>response.json())
-             .then(data=>{
-                //API Success from LoginRadius Login API
-             })
-             .catch(error=>console.log(error))
-        */
-       alert(`Dados: ${list}`)
+        const endpoint=`http://localhost:3002/api/main/data`; 
+
+        axios.post(endpoint, { 
+            dados: list
+        })
+        .then(response => {
+            setIsLoading(false)
+
+            if(response.status >= 400 && response.status < 500) {
+                throw new Error(`Ocorreu um erro! status:${response.status}`);
+            }
+            if(response.status >= 500) {
+                throw new Error(`Erro no Servidor! status:${response.status}`);
+            }
+
+            alert(response.data.status)
+        })
+        .catch(error => {
+            setIsLoading(false)
+            if(error instanceof TypeError){
+                alert("Erro de conexão")
+            }else{
+                alert(error.message ?? "Ocorreu um erro inesperado.")
+            }
+        });
     }
 
     const addEmailField = () => {

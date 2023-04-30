@@ -3,6 +3,7 @@ import { Header } from "../../components/Header";
 import {FormExtra} from "../../components/FormExtra"
 import {FormAction} from "../../components/FormAction"
 import { useState } from "react";
+import axios from 'axios';
 
 export function Login(){
 
@@ -10,6 +11,7 @@ export function Login(){
         email:"",
         password:""
     })
+    const [isLoading, setIsLoading] = useState(false)
 
     const navigate = useNavigate();
 
@@ -26,22 +28,34 @@ export function Login(){
 
     //Handle Login API Integration here
     const authenticateUser = () =>{
-        /*
-        const endpoint=`https://api.com`;
-         fetch(endpoint,
-             {
-             method:'POST',
-             headers: {
-             'Content-Type': 'application/json'
-             },
-             body:{}
-             }).then(response=>response.json())
-             .then(data=>{
-                //API Success from LoginRadius Login API
-             })
-             .catch(error=>console.log(error))
-        */
-        navigate('/main')
+        setIsLoading(true)
+
+        const endpoint=`http://localhost:3002/api/auth/sign-in`;
+
+        axios.post(endpoint, data)
+        .then(response=>{
+            setIsLoading(false)
+
+            if(response.status >= 400 && response.status < 500) {
+                throw new Error(`Ocorreu um erro! status:${response.status}`);
+            }
+            if(response.status >= 500) {
+                throw new Error(`Erro no Servidor! status:${response.status}`);
+            }
+
+            if(response.data.status){
+                navigate('/main')
+            }
+        })
+        .catch(error=>{
+            setIsLoading(false)
+
+            if(error instanceof TypeError){
+                alert("Erro de conexão")
+            }else{
+                alert(error.message ?? "Ocorreu um erro inesperado.")
+            }
+        })
     }
 
     return (
