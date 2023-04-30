@@ -3,6 +3,8 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 
 async function bootstrap() {
+  if (process.env.NODE_ENV !== 'production') require('dotenv').config()
+
   const appOptions: NestApplicationOptions = {
     cors: { 
       origin: "*", 
@@ -15,6 +17,6 @@ async function bootstrap() {
   }
   const app = await NestFactory.create(AppModule, appOptions);
   app.setGlobalPrefix('api') 
-  await app.listen(3002);
+  await app.listen(process.env.BACK_END_PORT);
 }
 bootstrap();

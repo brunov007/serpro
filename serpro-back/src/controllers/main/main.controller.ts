@@ -3,9 +3,16 @@ import { FileInterceptor } from '@nestjs/platform-express';
 import { OK } from 'http-status';
 import { ChatResponse } from 'src/models/reponse/chat-response.interface';
 import { MainRequest } from 'src/models/request/main-request';
+import { MainService } from 'src/services/main.service';
+import { OpenAiService } from 'src/services/open-ai.service';
 
 @Controller('main')
 export class MainController {
+
+    constructor(
+        private mainService: MainService,
+        private openAIService: OpenAiService
+    ) {}
 
     @Post('data')
     @HttpCode(OK)
