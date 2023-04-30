@@ -17,8 +17,8 @@ export class MainController {
     @Post('data')
     @HttpCode(OK)
     async data(@Body() body: MainRequest): Promise<ChatResponse> {
-        const dados = body
-        return {text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", status: true}
+        const {dados} = body
+        return await this.openAIService.chatCompletion(dados)
     }
 
     @Post('upload/csv')
