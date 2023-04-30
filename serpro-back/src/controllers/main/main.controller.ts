@@ -10,7 +10,7 @@ export class MainController {
     @Post('data')
     @HttpCode(OK)
     async data(@Body() body: MainRequest): Promise<ChatResponse> {
-        console.log(body)
+        const dados = body
         return {text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", status: true}
     }
 
@@ -18,10 +18,25 @@ export class MainController {
     @HttpCode(OK)
     @UseInterceptors(FileInterceptor('file'))
     async uploadFile(@UploadedFile() file: Express.Multer.File): Promise<ChatResponse> {
-        console.log(file)
-        if(!file) return {status: false}
-        if(file.mimetype !== 'text/csv') return {status: false}
-        //file.buffer
+        if(!file) return {status: false, message: "Necessário adicionar um arquivo de fomato .csv"}
+        if(file.mimetype !== 'text/csv') return {status: false, message: "Formato inválido."}
+        const dados = this.dataClean(file.buffer.toString())
+        /*
+        dados
+        [
+            'usuario',   'marca',
+            'case',      'salario',
+            'dentro',    'gmail',
+            'interaçao', 'junho',
+            'arroba'
+        ]
+        */
         return {text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", status: true}
+    }
+
+    private dataClean(s: string){
+        return s.split(",")
+                .map(item => item.replace(new RegExp("\\r\\n", "g"), ""))
+                .filter(item => item !== '')
     }
 }
