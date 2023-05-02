@@ -2,6 +2,12 @@
     - Tela inicial
     - Tela de Login
     - Tela para envio de dados onde retornará uma resposta do serviço OpenAI com um possível relatório.
+    - No relatorio deve conter:
+        - Grau de confidenciabilidade (0-5) de cada dado
+        - Grau de adequação (0-5) de cada dado
+        - Grau de severidade (0-5) de cada dado
+        - Lei (número, paragrafo, capítulo) que poderia ser averiguado
+        - Data de emissão
 
 # 🖥 Rodando a aplicação
     - Instale as dependências de ambos os projetos com o comando [npm install]
