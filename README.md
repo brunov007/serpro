@@ -2,6 +2,7 @@
     - Tela inicial
     - Tela de Login
     - Tela para envio de dados onde retornará uma resposta do serviço OpenAI com um possível relatório.
+    - Utilização de modelos de IA como: classificação e NLP para geração do relatório
     - No relatorio deve conter:
         - Grau de confidenciabilidade (0-5) de cada dado
         - Grau de adequação (0-5) de cada dado
