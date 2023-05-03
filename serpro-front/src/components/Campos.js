@@ -71,7 +71,10 @@ export function Campos(){
     return (
         <>
             <Modal show={show} handleClose={hideModal}>
-                <p>{text}</p>
+                <div className="flex flex-col space-y-20 items-center">
+                    <p>{text}</p>
+                    <button className="btn-modal">Relatório</button>
+                </div>
             </Modal>
             <form className="flex flex-col space-y-60" onSubmit={handleSubmit}>
                 <fieldset className="inputs-set" id="list-container">

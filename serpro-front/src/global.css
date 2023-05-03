@@ -65,6 +65,16 @@
   top:50%;
   left:50%;
   transform: translate(-50%,-50%);
+  padding: 15px;
+}
+
+.btn-modal {
+  min-width: 100px;
+  padding: 10px;
+  border-radius: 50px;
+  border-style: solid;
+  border-width: 2px;
+  border-color: black;
 }
 
 .display-block {
@@ -98,5 +108,9 @@
 
   .btn-login{
     @apply w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 mt-10
+  }
+
+  .btn-modal{
+    @apply transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110
   }
 }

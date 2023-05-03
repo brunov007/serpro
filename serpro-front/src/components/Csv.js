@@ -56,7 +56,10 @@ export function Csv(){
     return (
         <>
             <Modal show={show} handleClose={hideModal}>
-                <p>{text}</p>
+                <div className="flex flex-col space-y-20 items-center">
+                    <p>{text}</p>
+                    <button className="btn-modal">Relatório</button>
+                </div>
             </Modal>
             <form className="flex flex-col space-y-80 items-center" onSubmit={handleSubmit}>
                 <input type="file" onChange={handleFileSelect} className="text-white"/>
