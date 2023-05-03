@@ -22,6 +22,6 @@
     - https://nestjs.com/
     - https://react.dev/
     
-Aguarde o vídeo abaixo carregar, qualquer coisa clique em screen.gif na raiz do projeto
+Aguarde o vídeo abaixo carregar, qualquer coisa clique em screen3.gif na raiz do projeto
 
-![Gif](screen2.gif)
+![Gif](screen3.gif)
