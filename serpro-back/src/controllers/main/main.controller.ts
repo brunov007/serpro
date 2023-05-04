@@ -21,7 +21,8 @@ export class MainController {
     async data(@Body() body: MainRequest): Promise<ChatResponse> {
         const {dados} = body
         console.log(dados)
-        this.customAiService.getResult(dados)
+        const t = this.customAiService.getResult(dados)
+        console.log(t)
         //return await this.openAIService.chatCompletion(dados)
         return {text: "teste"}
     }
