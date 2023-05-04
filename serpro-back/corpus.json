@@ -1,0 +1,62 @@
+[
+    {
+      "input": { "senha": 1, "sobrenome": 0, "nome": 0 },
+      "output": { "senha": 1 }
+    },
+    {
+      "input": { "email": 1, "senha": 1, "edificio": 0 },
+      "output": { "senha": 1, "email": 1 }
+    },
+    {
+      "input": { "usuario": 1, "user": 1, "name": 0, "nome": 0 },
+      "output": { "usuario": 1 }
+    },
+    {
+      "input": { "cpf": 1, "senha": 1, "etnia": 1 },
+      "output": { "cpf": 1, "senha": 1 }
+    },
+    {
+      "input": { "banana": 0, "maca": 0, "dente": 0, "cpf": 1 },
+      "output": { "cpf": 1 }
+    },
+    {
+      "input": { "email": 1, "etnia": 1, "religiao": 1, "entidade": 0, "localizacao": 0 },
+      "output": { "email": 1, "etnia": 1, "religiao": 1 }
+    },
+    {
+      "input": { "senha": 1, "juros": 0, "time": 0, "marca": 0 },
+      "output": { "senha": 1}
+    },
+    {
+      "input": { "montante": 0, "quantidade": 0, "email": 1, "senha": 1 },
+      "output": { "email": 1 , "senha": 1}
+    },
+    {
+      "input": { "sindicato": 1, "usuario": 1, "user": 1, "etnia": 1 },
+      "output": { "sindicato": 1, "usuario": 1, "user": 1, "etnia": 1 }
+    },
+    {
+      "input": { "usuario": 1, "porcentagem": 0,  "user": 1 },
+      "output": { "usuario": 1 , "user": 1}
+    },
+    {
+      "input": { "sindicato": 1, "temporada": 0,  "user": 1 },
+      "output": { "sindicato": 1 , "user": 1}
+    },
+    {
+      "input": { "ip": 1, "usuario": 1 },
+      "output": { "ip": 1 , "usuario": 1}
+    },
+    {
+      "input": { "ip": 1, "rede": 0, "firewall":0 },
+      "output": { "ip": 1 }
+    },
+    {
+      "input": { "massa": 0, "imc": 0, "altura":1 },
+      "output": { "altura": 1 }
+    },
+    {
+      "input": { "rg": 1, "titulo": 0, "cpf":1 },
+      "output": { "rg": 1, "cpf": 1 }
+    }
+  ]
