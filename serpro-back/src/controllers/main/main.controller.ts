@@ -3,6 +3,7 @@ import { FileInterceptor } from '@nestjs/platform-express';
 import { OK } from 'http-status';
 import { ChatResponse } from 'src/models/reponse/chat-response.interface';
 import { MainRequest } from 'src/models/request/main-request';
+import { CustomAiService } from 'src/services/custom-ai.service';
 import { MainService } from 'src/services/main.service';
 import { OpenAiService } from 'src/services/open-ai.service';
 
@@ -11,14 +12,18 @@ export class MainController {
 
     constructor(
         private mainService: MainService,
-        private openAIService: OpenAiService
+        private openAIService: OpenAiService,
+        private customAiService: CustomAiService
     ) {}
 
     @Post('data')
     @HttpCode(OK)
     async data(@Body() body: MainRequest): Promise<ChatResponse> {
         const {dados} = body
-        return await this.openAIService.chatCompletion(dados)
+        console.log(dados)
+        this.customAiService.getResult(dados)
+        //return await this.openAIService.chatCompletion(dados)
+        return {text: "teste"}
     }
 
     @Post('upload/csv')
