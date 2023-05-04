@@ -58,14 +58,16 @@ export class OpenAiService {
             if(e.response){
                 console.log(e.response.data)
                 if(e.response.status === 429){
-                    return {status: false, text: e.response.data.error.message}
+                    text += e.response.data.error.message
                 }else{
-                    return {status: false, text: String(e.response.data)}
+                    text += String(e.response.data)
                 }
+            }else{
+                console.log(e)
+                text += "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
             }
-            text += "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
         }
 
-        return {status: true, text: text}
+        return text
     }
 }
