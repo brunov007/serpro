@@ -19,24 +19,41 @@ export class MainController {
     @Post('data')
     @HttpCode(OK)
     async data(@Body() body: MainRequest): Promise<ChatResponse> {
+        
         const {dados} = body
-        console.log(dados)
-        const t = this.customAiService.getResult(dados)
-        console.log(t)
-        //return await this.openAIService.chatCompletion(dados)
-        return {text: "teste"}
+
+        const text = await this.openAIService.chatCompletion(dados)
+
+        return {
+            text: text, 
+            report: {
+                laws: [], //TODO
+                fields: this.customAiService.getResult(dados)
+            }
+        }
     }
 
+    //FIXME
     @Post('upload/csv')
     @HttpCode(OK)
     @UseInterceptors(FileInterceptor('file'))
     async uploadFile(@UploadedFile() file: Express.Multer.File): Promise<ChatResponse> {
-        if(!file) return {status: false, message: "Necessário adicionar um arquivo de fomato .csv"}
-        if(file.mimetype !== 'text/csv') return {status: false, message: "Formato inválido."}
+        
+        //TODO thrown Error
+        //if(!file) return {status: false, message: "Necessário adicionar um arquivo de fomato .csv"}
+        //if(file.mimetype !== 'text/csv') return {status: false, message: "Formato inválido."}
         
         const dados = this.dataClean(file.buffer.toString())
         
-        return await this.openAIService.chatCompletion(dados)
+        const text = await this.openAIService.chatCompletion(dados)
+
+        return {
+            text: text, 
+            report: {
+                laws: [], //TODO
+                fields: this.customAiService.getResult(dados)
+            }
+        }
     }
 
     private dataClean(s: string){

@@ -16,7 +16,17 @@ export class CustomAiService {
         const ob = {}
         arr.forEach(item => ob[item] = 1)
         
-        return this.network.run(ob)
+        const t = this.network.run(ob)
+
+        Object.keys(ob).forEach(item => {
+            if(!Object.keys(t).includes(item)){
+                delete ob[item]
+            }else{
+                ob[item] = t[item] * 10
+            }
+        })
+
+        return ob
     }
 
     trainIA(){
