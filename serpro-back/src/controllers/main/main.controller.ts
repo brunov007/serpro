@@ -23,13 +23,17 @@ export class MainController {
         const {dados} = body
 
         const text = await this.openAIService.chatCompletion(dados)
+        
+        let data = new Date();
+        let dataFormatada = ((data.getDate() )) + "/" + ((data.getMonth() + 1)) + "/" + data.getFullYear(); 
 
         return {
             text: text, 
             report: {
-                laws: [], //TODO
+                laws: [], //TODO possiveis leis
                 fields: this.customAiService.getResult(dados)
-            }
+            },
+            date: dataFormatada
         }
     }
 
@@ -47,12 +51,16 @@ export class MainController {
         
         const text = await this.openAIService.chatCompletion(dados)
 
+        let data = new Date();
+        let dataFormatada = ((data.getDate() )) + "/" + ((data.getMonth() + 1)) + "/" + data.getFullYear(); 
+
         return {
             text: text, 
             report: {
                 laws: [], //TODO
                 fields: this.customAiService.getResult(dados)
-            }
+            },
+            date: dataFormatada
         }
     }
 
