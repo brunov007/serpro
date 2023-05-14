@@ -3,6 +3,10 @@ import { useState } from 'react';
 import {FormAction} from "../components/FormAction"
 import axios from 'axios';
 import { Modal } from './Modal';
+import pdfMake from 'pdfmake/build/pdfmake'
+import pdfFonts from 'pdfmake/build/vfs_fonts'
+
+pdfMake.vfs = pdfFonts.pdfMake.vfs
 
 export function Campos(){
 
@@ -66,6 +70,30 @@ export function Campos(){
         list.appendChild(newEmailField);
     }
 
+    const relatorioClick = () => {
+        var docDefinition = {
+            content: [
+              // if you don't need styles, you can use a simple string to define a paragraph
+              'This is a standard paragraph, using default style',
+          
+              // using a { text: '...' } object lets you set styling properties
+              { text: 'This paragraph will have a bigger font', fontSize: 15 },
+          
+              // if you set the value of text to an array instead of a string, you'll be able
+              // to style any part individually
+              {
+                text: [
+                  'This paragraph is defined as an array of elements to make it possible to ',
+                  { text: 'restyle part of it and make it bigger ', fontSize: 15 },
+                  'than the rest.'
+                ]
+              }
+            ]
+          };
+        const pdfGenerator = pdfMake.createPdf(docDefinition)
+        pdfGenerator.open()
+    }
+
     const hideModal = () => setShow(false)
 
     return (
@@ -73,7 +101,7 @@ export function Campos(){
             <Modal show={show} handleClose={hideModal}>
                 <div className="flex flex-col space-y-20 items-center">
                     <p>{text}</p>
-                    <button className="btn-modal">Relatório</button>
+                    <button className="btn-modal" onClick={relatorioClick}>Relatório</button>
                 </div>
             </Modal>
             <form className="flex flex-col space-y-60" onSubmit={handleSubmit}>
