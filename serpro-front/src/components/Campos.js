@@ -12,7 +12,7 @@ export function Campos(){
 
     const [isLoading, setIsLoading] = useState(false)
     const [show, setShow] = useState(false)
-    const [text, setText] = useState("")
+    const [data, setData] = useState(null)
 
     const handleSubmit = e => {
         e.preventDefault()
@@ -45,7 +45,7 @@ export function Campos(){
             }
 
             setShow(true)
-            setText(response.data.text)
+            setData(response.data)
         })
         .catch(error => {
             setIsLoading(false)
@@ -71,25 +71,42 @@ export function Campos(){
     }
 
     const relatorioClick = () => {
+
+        const transform = data.report.fields.reduce((prev, current, i, arr) => {
+            arr[i] = Object.values(current)
+            return arr
+        },0)
+        transform.unshift(['Dado', 'Confidenciabilidade', 'Adequação', 'Severidade', 'Porcetagem'])
+
         var docDefinition = {
             content: [
-              // if you don't need styles, you can use a simple string to define a paragraph
-              'This is a standard paragraph, using default style',
-          
-              // using a { text: '...' } object lets you set styling properties
-              { text: 'This paragraph will have a bigger font', fontSize: 15 },
-          
-              // if you set the value of text to an array instead of a string, you'll be able
-              // to style any part individually
+              {text: 'Relatório', style: 'header'},
+              'Validação dos dados de acordo com a privacidade e sua proteção.',
               {
-                text: [
-                  'This paragraph is defined as an array of elements to make it possible to ',
-                  { text: 'restyle part of it and make it bigger ', fontSize: 15 },
-                  'than the rest.'
-                ]
-              }
-            ]
+                style: 'tableExample',
+                table: {
+                    body: transform
+                }
+              },
+              `Emissão: ${data.date}`
+            ],
+            styles: {
+                header: {
+                    fontSize: 18,
+                    bold: true,
+                    margin: [0, 0, 0, 10]
+                },
+                subheader: {
+                    fontSize: 16,
+                    bold: true,
+                    margin: [0, 10, 0, 5]
+                },
+                tableExample: {
+                    margin: [0, 5, 0, 15]
+                }
+            },
           };
+
         const pdfGenerator = pdfMake.createPdf(docDefinition)
         pdfGenerator.open()
     }
@@ -100,7 +117,7 @@ export function Campos(){
         <>
             <Modal show={show} handleClose={hideModal}>
                 <div className="flex flex-col space-y-20 items-center">
-                    <p>{text}</p>
+                    <p>{data ? data.text : ""}</p>
                     <button className="btn-modal" onClick={relatorioClick}>Relatório</button>
                 </div>
             </Modal>
