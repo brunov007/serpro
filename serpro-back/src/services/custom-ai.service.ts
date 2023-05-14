@@ -13,20 +13,32 @@ export class CustomAiService {
     }
 
     getResult(arr: string[]){
+        const result = []
         const ob = {}
         arr.forEach(item => ob[item] = 1)
         
         const t = this.network.run(ob)
 
         Object.keys(ob).forEach(item => {
-            if(!Object.keys(t).includes(item)){
-                delete ob[item]
-            }else{
-                ob[item] = t[item] * 10
+            const r = {
+                "dado": item,
+                "confidenciabilidade": 0.0,
+                "adequação": 0.0,
+                "severidade": 0.0,
+                "porcetagem": 0
             }
+
+            if(Object.keys(t).includes(item)){
+                r.confidenciabilidade = 0.5
+                r.adequação = 0.5
+                r.severidade = 0.5
+                r.porcetagem = t[item] * 100
+            }
+            
+            result.push(r)
         })
 
-        return ob
+        return result
     }
 
     trainIA(){
