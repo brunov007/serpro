@@ -22,10 +22,7 @@ export class MainController {
         
         const {dados} = body
 
-        const text = await this.openAIService.chatCompletion(dados)
-        
-        let data = new Date();
-        let dataFormatada = ((data.getDate() )) + "/" + ((data.getMonth() + 1)) + "/" + data.getFullYear(); 
+        const text = await this.openAIService.chatCompletion(dados) 
 
         return {
             text: text, 
@@ -33,7 +30,7 @@ export class MainController {
                 laws: [], //TODO possiveis leis
                 fields: this.customAiService.getResult(dados)
             },
-            date: dataFormatada
+            date: DateUtils.nowFormated()
         }
     }
 
@@ -47,12 +44,9 @@ export class MainController {
         //if(!file) return {status: false, message: "Necessário adicionar um arquivo de fomato .csv"}
         //if(file.mimetype !== 'text/csv') return {status: false, message: "Formato inválido."}
         
-        const dados = this.dataClean(file.buffer.toString())
+        const dados = StringUtils.dataClean(file.buffer.toString())
         
         const text = await this.openAIService.chatCompletion(dados)
-
-        let data = new Date();
-        let dataFormatada = ((data.getDate() )) + "/" + ((data.getMonth() + 1)) + "/" + data.getFullYear(); 
 
         return {
             text: text, 
@@ -60,13 +54,7 @@ export class MainController {
                 laws: [], //TODO
                 fields: this.customAiService.getResult(dados)
             },
-            date: dataFormatada
+            date: DateUtils.nowFormated()
         }
-    }
-
-    private dataClean(s: string){
-        return s.split(",")
-                .map(item => item.replace(new RegExp("\\r\\n", "g"), ""))
-                .filter(item => item !== '')
     }
 }
