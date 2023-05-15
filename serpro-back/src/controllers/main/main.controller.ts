@@ -1,4 +1,4 @@
-import { Body, Controller, HttpCode, Post, UploadedFile, UseInterceptors } from '@nestjs/common';
+import { BadRequestException, Body, Controller, HttpCode, Post, UploadedFile, UseInterceptors } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { OK } from 'http-status';
 import { ChatResponse } from 'src/models/reponse/chat-response.interface';
@@ -6,6 +6,8 @@ import { MainRequest } from 'src/models/request/main-request';
 import { CustomAiService } from 'src/services/custom-ai.service';
 import { MainService } from 'src/services/main.service';
 import { OpenAiService } from 'src/services/open-ai.service';
+import DateUtils from 'src/utils/date.utils'
+import StringUtils from 'src/utils/string.utils'
 
 @Controller('main')
 export class MainController {
@@ -22,10 +24,7 @@ export class MainController {
         
         const {dados} = body
 
-        const text = await this.openAIService.chatCompletion(dados)
-        
-        let data = new Date();
-        let dataFormatada = ((data.getDate() )) + "/" + ((data.getMonth() + 1)) + "/" + data.getFullYear(); 
+        const text = await this.openAIService.chatCompletion(dados) 
 
         return {
             text: text, 
@@ -33,26 +32,21 @@ export class MainController {
                 laws: [], //TODO possiveis leis
                 fields: this.customAiService.getResult(dados)
             },
-            date: dataFormatada
+            date: DateUtils.nowFormated()
         }
     }
 
-    //FIXME
     @Post('upload/csv')
     @HttpCode(OK)
     @UseInterceptors(FileInterceptor('file'))
     async uploadFile(@UploadedFile() file: Express.Multer.File): Promise<ChatResponse> {
         
-        //TODO thrown Error
-        //if(!file) return {status: false, message: "Necessário adicionar um arquivo de fomato .csv"}
-        //if(file.mimetype !== 'text/csv') return {status: false, message: "Formato inválido."}
-        
-        const dados = this.dataClean(file.buffer.toString())
+        if(!file) throw new BadRequestException(null, "Necessário adicionar um arquivo de fomato .csv")
+        if(file.mimetype !== 'text/csv') throw new BadRequestException(null, "Formato inválido.")
+
+        const dados = StringUtils.dataClean(file.buffer.toString())
         
         const text = await this.openAIService.chatCompletion(dados)
-
-        let data = new Date();
-        let dataFormatada = ((data.getDate() )) + "/" + ((data.getMonth() + 1)) + "/" + data.getFullYear(); 
 
         return {
             text: text, 
@@ -60,13 +54,7 @@ export class MainController {
                 laws: [], //TODO
                 fields: this.customAiService.getResult(dados)
             },
-            date: dataFormatada
+            date: DateUtils.nowFormated()
         }
-    }
-
-    private dataClean(s: string){
-        return s.split(",")
-                .map(item => item.replace(new RegExp("\\r\\n", "g"), ""))
-                .filter(item => item !== '')
     }
 }
