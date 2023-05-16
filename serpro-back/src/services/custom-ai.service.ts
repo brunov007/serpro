@@ -13,13 +13,12 @@ export class CustomAiService {
     }
 
     getResult(arr: string[]){
-        const result = []
         const ob = {}
         arr.forEach(item => ob[item] = 1)
         
         const t = this.network.run(ob)
 
-        Object.keys(ob).forEach(item => {
+        return arr.map(item => {
             const r = {
                 "dado": item,
                 "confidenciabilidade": 0.0,
@@ -35,13 +34,13 @@ export class CustomAiService {
                 r.porcetagem = t[item] * 100
             }
             
-            result.push(r)
+            return r
         })
-
-        return result
     }
 
+    /*
     trainIA(){
 
     }
+    */
 }
