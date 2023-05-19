@@ -36,6 +36,7 @@ export class OpenAiService {
     async chatCompletion(arr: string[]){
         let text = ""
         const s = `Describe whether these data: ${arr.join(",")} are related to the LGPD`
+        //const s = `given these datas: ${arr.join(",")}. return a json that includes severity and confidentiality of each data from scale 0 to 0.5 according to LGPD`
 
         const request : CreateChatCompletionRequest = {
             model: "gpt-3.5-turbo",
